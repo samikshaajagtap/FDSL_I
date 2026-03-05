@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Registration Form</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="form.js" defer></script>
+
+</head>
+
+<body>
+
+<h2 id="title">Student Registration Form</h2>
+
+<form id="regForm">
+
+<label>Username</label>
+<input type="text" id="username" class="inputField"><br><br>
+
+<label>Email</label>
+<input type="text" id="email" class="inputField"><br><br>
+
+<label>Phone Number</label>
+<input type="text" id="phone" class="inputField"><br><br>
+
+<label>Password</label>
+<input type="password" id="password" class="inputField"><br><br>
+
+<label>Confirm Password</label>
+<input type="password" id="confirm" class="inputField"><br><br>
+
+<button type="button" id="submitBtn" onclick="validateForm()">Register</button>
+
+</form>
+
+<p id="message"></p>
+
+<br>
+
+<img id="image" src="https://via.placeholder.com/150" width="150">
+
+<br><br>
+
+<button onclick="changeImage()">Change Image</button>
+<button onclick="addNode()">Add Text</button>
+<button onclick="deleteNode()">Delete Text</button>
+
+<div id="container"></div>
+
+</body>
+</html>

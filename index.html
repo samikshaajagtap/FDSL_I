@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Student Registration Form</title>
-
+<title>Contact Form</title>
 <link rel="stylesheet" href="style.css">
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="form.js" defer></script>
-
 </head>
 
 <body>
 
-<h2 id="title">Student Registration Form</h2>
+<div class="container">
 
-<form id="regForm">
+<h2>Contact Us</h2>
 
-<label>Username</label>
-<input type="text" id="username" class="inputField"><br><br>
+<form id="contactForm">
 
-<label>Email</label>
-<input type="text" id="email" class="inputField"><br><br>
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" id="name" placeholder="Enter your name" required>
+<small id="nameMsg" class="msg"></small>
+</div>
 
-<label>Phone Number</label>
-<input type="text" id="phone" class="inputField"><br><br>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="text" id="email" placeholder="Enter your email" required>
+<small id="emailMsg" class="msg"></small>
+</div>
 
-<label>Password</label>
-<input type="password" id="password" class="inputField"><br><br>
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" id="password" placeholder="Enter password" required>
+<small id="passMsg" class="msg"></small>
+</div>
 
-<label>Confirm Password</label>
-<input type="password" id="confirm" class="inputField"><br><br>
+<div class="form-group">
+<label for="phone">Phone</label>
+<input type="text" id="phone" placeholder="Enter 10 digit phone number" maxlength="10" required>
+<small id="phoneMsg" class="msg"></small>
+</div>
 
-<button type="button" id="submitBtn" onclick="validateForm()">Register</button>
+<button type="submit" class="submit-btn">Submit</button>
 
 </form>
 
-<p id="message"></p>
-
-<br>
-
-<img id="image" src="https://via.placeholder.com/150" width="150">
-
-<br><br>
-
-<button onclick="changeImage()">Change Image</button>
-<button onclick="addNode()">Add Text</button>
-<button onclick="deleteNode()">Delete Text</button>
-
-<div id="container"></div>
+</div>
 
 </body>
 </html>

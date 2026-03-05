@@ -1,82 +1,104 @@
-function validateForm(){
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
+const phoneInput = document.getElementById("phone");
 
-let username = document.getElementById("username").value.trim();
-let email = document.getElementById("email").value.trim();
-let phone = document.getElementById("phone").value.trim();
-let password = document.getElementById("password").value;
-let confirm = document.getElementById("confirm").value;
 
-let msg = document.getElementById("message");
+// NAME VALIDATION
+nameInput.addEventListener("input", function () {
 
-let phonePattern = /^[0-9]{10}$/;
-let emailPattern = /^[a-zA-Z]+@[a-zA-Z]{3}\.[a-zA-Z]{2,3}$/;
-let passPattern = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[&$#@]).{7,}$/;
+let msg = document.getElementById("nameMsg");
 
-if(username=="" || email=="" || phone=="" || password=="" || confirm==""){
-msg.innerHTML="All fields are mandatory";
-msg.style.color="red";
+if (this.value.length === 0) {
+msg.style.display = "none";
 return;
 }
 
-if(!phonePattern.test(phone)){
-msg.innerHTML="Phone number must be 10 digits";
-return;
+msg.style.display = "block";
+
+if (this.value.length >= 3) {
+msg.innerHTML = "✔ Valid name";
+msg.className = "msg valid";
+}
+else {
+msg.innerHTML = "✖ At least 3 characters required";
+msg.className = "msg invalid";
 }
 
-if(!emailPattern.test(email)){
-msg.innerHTML="Invalid email format";
-return;
-}
-
-if(!passPattern.test(password)){
-msg.innerHTML="Password must contain 1 capital letter, 1 digit and special character";
-return;
-}
-
-if(password!=confirm){
-msg.innerHTML="Passwords do not match";
-return;
-}
-
-msg.innerHTML="Registration Successful";
-msg.style.color="green";
-
-}
-
-/* DOM Manipulation */
-
-function changeImage(){
-document.getElementById("image").src="https://via.placeholder.com/150/ff0000";
-}
-
-function addNode(){
-let text=document.createTextNode("Welcome Student!");
-let para=document.createElement("p");
-para.appendChild(text);
-
-document.getElementById("container").appendChild(para);
-}
-
-function deleteNode(){
-let container=document.getElementById("container");
-if(container.lastChild){
-container.removeChild(container.lastChild);
-}
-}
-
-/* jQuery Operations */
-
-$(document).ready(function(){
-
-$("#submitBtn").click(function(){
-$(this).text("Submitted");
 });
 
-$("body").css("background-image","url('https://via.placeholder.com/800')");
-$("body").css("background-size","cover");
 
-let username=$("#username").val();
+// EMAIL VALIDATION
+emailInput.addEventListener("input", function () {
 
-$("#title").attr("title","Student Form");
+let msg = document.getElementById("emailMsg");
+let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+if (this.value.length === 0) {
+msg.style.display = "none";
+return;
+}
+
+msg.style.display = "block";
+
+if (pattern.test(this.value)) {
+msg.innerHTML = "✔ Valid email";
+msg.className = "msg valid";
+}
+else {
+msg.innerHTML = "✖ Invalid email format";
+msg.className = "msg invalid";
+}
+
+});
+
+
+// PASSWORD VALIDATION (LIVE CONDITIONS)
+passInput.addEventListener("input", function () {
+
+let msg = document.getElementById("passMsg");
+
+if (this.value.length === 0) {
+msg.style.display = "none";
+return;
+}
+
+msg.style.display = "block";
+
+let value = this.value;
+
+msg.innerHTML = `
+<ul class="pass-list">
+<li class="${value.length >= 8 ? 'valid' : 'invalid'}">At least 8 characters</li>
+<li class="${/[A-Z]/.test(value) ? 'valid' : 'invalid'}">One uppercase letter</li>
+<li class="${/[0-9]/.test(value) ? 'valid' : 'invalid'}">One number</li>
+<li class="${/[!@#$%^&*]/.test(value) ? 'valid' : 'invalid'}">One special character</li>
+</ul>
+`;
+
+});
+
+
+// PHONE VALIDATION
+phoneInput.addEventListener("input", function () {
+
+let msg = document.getElementById("phoneMsg");
+let pattern = /^[0-9]{10}$/;
+
+if (this.value.length === 0) {
+msg.style.display = "none";
+return;
+}
+
+msg.style.display = "block";
+
+if (pattern.test(this.value)) {
+msg.innerHTML = "✔ Valid phone number";
+msg.className = "msg valid";
+}
+else {
+msg.innerHTML = "✖ Phone must be 10 digits";
+msg.className = "msg invalid";
+}
 
 });
